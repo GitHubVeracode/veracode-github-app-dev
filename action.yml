@@ -45,8 +45,7 @@ runs:
         name: ${{ inputs.check_run_name }}
         head_sha: ${{ inputs.head_sha }}
         status: in_progress
-        details_url: "https://github.com/${{ inputs.repositroy_owner}}/${{ inputs.default_organization_repository }}/actions/runs/${{ fromJson(steps.create_check_run.outputs.data).id }}"
-        # details_url: "https://github.com/${{ inputs.repositroy_owner}}/${{ inputs.default_organization_repository }}/actions/runs/${{ fromJson(steps.create_check_run.outputs.data).id }}"
+        details_url: "https://github.com/${{ inputs.repositroy_owner}}/${{ inputs.default_organization_repository }}/actions/runs/${{ inputs.run_id }}"
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
     - name: Create metadata
