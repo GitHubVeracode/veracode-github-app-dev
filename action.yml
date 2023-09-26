@@ -4,6 +4,9 @@ branding:
   icon: 'check-circle'
   color: 'white'
 inputs:
+  run_id: 
+    description: description: 'ID of workflow run (provided via GitHub syntax `github.run_id`)'
+    required: true
   repositroy_owner: 
     description: 'repositroy_owner of original commit (provided by GitHub app via `github.event.client_payload.repository.owner`)'
     required: true
@@ -42,7 +45,7 @@ runs:
         name: ${{ inputs.check_run_name }}
         head_sha: ${{ inputs.head_sha }}
         status: in_progress
-        details_url: "https://github.com/${{ inputs.repositroy_owner}}/${{ inputs.default_organization_repository }}/actions/runs/"
+        details_url: "https://github.com/${{ inputs.repositroy_owner}}/${{ inputs.default_organization_repository }}/actions/runs/${{ fromJson(steps.create_check_run.outputs.data).id }}"
         # details_url: "https://github.com/${{ inputs.repositroy_owner}}/${{ inputs.default_organization_repository }}/actions/runs/${{ fromJson(steps.create_check_run.outputs.data).id }}"
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
